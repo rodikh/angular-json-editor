@@ -1,0 +1,10 @@
+{
+    "name": "ng-json-editor",
+    "version": "0.0.1",
+    "dependencies": {
+        "json-editor": "*"
+    },
+    "devDependencies": {
+        "angular": "1.2.*"
+    }
+}
