@@ -4,18 +4,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="author" content="Rodik">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
 <body>
-    <div>
-        Test
-        <div json-editor="schema.json"></div>
+    <div class="container" ng-controller="MyCtrl">
+        <form>
+            <div json-editor="" schema-url="schema.json" startval="startval"></div>
+            <input type="submit" value="Submit">
+        </form>
     </div>
     
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/json-editor/dist/jsoneditor.js"></script>
-    
-    <script src="../app/ng-json-editor.js"></script>
-    
+    <script src="../src/ng-json-editor.js"></script>
     <script src="../demo/app.js"></script>
 </body>
 </html>

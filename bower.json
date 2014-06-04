@@ -1,6 +1,7 @@
 {
     "name": "ng-json-editor",
     "version": "0.0.1",
+	"main": "app/ng-json-editor.js",
     "dependencies": {
         "json-editor": "*"
     },

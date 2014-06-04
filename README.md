@@ -22,8 +22,36 @@ Usage
 
 Include the json-editor and angular scripts first, and then include ng-json-editor.
 
-Use the json-editor directive with a path to the schema you want to use.
+There are two optional ways of passing a json schema to the editor.
 
-```html
-<div json-editor="schema/schema_path.json"></div>
-```
+* Pass the schema using a scope object as the value of the directive's attribute
+
+	```js
+	.controller('MyCtrl', function ($scope) {
+		$scope.schemaObj = {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"required": true,
+					"minLength": 1
+				},
+				"age": {
+					"type": "integer",
+					"title": "Age",
+					"min": 0
+				}
+			}
+		};
+	}
+	```
+
+	```html
+	<div json-editor="schemaObj"></div>
+	```
+
+* Use an external JSON file as the schema and pass the url using the schema-url attribute
+
+	```html
+	<div json-editor="" schema-url='/schema/person.json></div>
+	```
