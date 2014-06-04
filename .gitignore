@@ -1,9 +1,6 @@
 /.idea
-/.sass-cache
 /bower_components
-/build/**
 /node_modules
-ssl.json
 
 [Tt]humbs.db
 *.DS_Store

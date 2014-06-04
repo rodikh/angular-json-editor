@@ -8,15 +8,15 @@
 </head>
 <body>
     <div class="container" ng-controller="MyCtrl">
-        <form>
-            <div json-editor="" schema-url="schema.json" startval="startval"></div>
-            <input type="submit" value="Submit">
+        <form ng-submit="onSubmit()">
+            <div json-editor="ctrlSchema" startval="startval" editor="editor" is-valid="isValid"></div>
+            <input type="submit" value="Submit" ng-disabled="!isValid">
         </form>
     </div>
     
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/json-editor/dist/jsoneditor.js"></script>
-    <script src="../src/ng-json-editor.js"></script>
+    <script src="../src/angular-json-editor.js"></script>
     <script src="../demo/app.js"></script>
 </body>
 </html>

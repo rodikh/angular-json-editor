@@ -1,11 +1,9 @@
 {
-    "name": "ng-json-editor",
+    "name": "angular-json-editor",
     "version": "0.0.1",
-	"main": "app/ng-json-editor.js",
+	"main": "src/angular-json-editor.js",
     "dependencies": {
-        "json-editor": "*"
-    },
-    "devDependencies": {
-        "angular": "1.2.*"
+        "json-editor": "*",
+		"angular": "1.2.*"
     }
 }
