@@ -22,8 +22,8 @@ Install via bower
 Then include the directive and json-editor in your html (you can also use the minified versions)
     
 ```html
-    <script src="bower_components/json-editor/dist/jsoneditor.js"></script>
-    <script src="bower_components/angular-json-editor/angular-json-editor.js"></script>
+<script src="bower_components/json-editor/dist/jsoneditor.js"></script>
+<script src="bower_components/angular-json-editor/angular-json-editor.js"></script>
 ```
 
 Usage

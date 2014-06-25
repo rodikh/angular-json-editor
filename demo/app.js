@@ -60,7 +60,7 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JsonEditorCo
 }).controller('AsyncButtonsController', function ($scope) {
 
     $scope.onSubmit = function () {
-        console.log('onSubmit ata in async controller', $scope.editor.getValue());
+        console.log('onSubmit data in async controller', $scope.editor.getValue());
     };
 
 });
