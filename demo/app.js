@@ -1,8 +1,17 @@
 'use strict';
 
-angular.module('demoApp', ['angular-json-editor'])
-.controller('MyCtrl', function ($scope) {
-    $scope.ctrlSchema = {
+angular.module('demoApp', ['angular-json-editor']).config(function (JsonEditorConfig) {
+
+    // angular-json-editor configuration
+    JsonEditorConfig.iconlib = 'bootstrap3';
+    JsonEditorConfig.theme = 'bootstrap3';
+
+    // Configure the buttons controller
+    JsonEditorConfig.controller = 'ButtonsController';
+
+}).controller('SyncAppController', function ($scope) {
+
+    $scope.mySchema = {
         type: 'object',
         properties: {
             name: {
@@ -20,16 +29,35 @@ angular.module('demoApp', ['angular-json-editor'])
         }
     };
 
-    $scope.startval = {
+    $scope.myStartVal = {
         age: 20
     };
 
-    $scope.onSubmit = function () {
-        var formData = $scope.editor.getValue();
-        console.log('formData', formData);
-    };
-});
+}).controller('AsyncAppController', function ($scope, $http, $timeout) {
 
-angular.element(window.document).ready(function () {
-	angular.bootstrap(window.document, ['demoApp']);
+    // Load with $http
+    $scope.mySchema = $http.get('schema.json');
+
+    // Values can be a promise from anywhere
+    $scope.myStartVal = $timeout(function () {
+        return {
+            age: 20
+        };
+
+    }, 2000);
+
+}).controller('ButtonsController', function ($scope) {
+
+    /**
+     * Custom actions controller which allows you to add any other buttons/actions to the form.
+     */
+
+    $scope.onSubmit = function () {
+        console.log('onSubmit Data', $scope.editor.getValue());
+    };
+
+    $scope.onAction2 = function () {
+        console.log('onAction2');
+    };
+
 });

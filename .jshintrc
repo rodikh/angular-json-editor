@@ -52,6 +52,7 @@
     "node": true,
     "nonstandard": false,
     "predef": [
-        "angular"
+        "angular",
+        "JSONEditor"
     ]
 }

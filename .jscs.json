@@ -1,5 +1,5 @@
 {
-    "excludeFiles": ["bower_components/**", "node_modules/**"],
+    "excludeFiles": ["bower_components/**", "node_modules/**", "build/**", "dist/**"],
     "disallowKeywords": ["with"],
     "disallowTrailingWhitespace": true,
     "requireCurlyBraces": ["if", "else", "for", "while", "do", "try", "catch"],

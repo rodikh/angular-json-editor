@@ -1,56 +1,82 @@
 'use strict';
 
-angular.module('angular-json-editor', [])
-.directive('jsonEditor', function () {
+angular.module('angular-json-editor', []).constant('JsonEditorConfig', {
+    iconlib: 'bootstrap3',
+    theme: 'bootstrap3',
+    controller: angular.noop
+
+}).directive('jsonEditor', ['$q', 'JsonEditorConfig', function ($q, JsonEditorConfig) {
+
     return {
-        restrict: 'A',
+        restrict: 'E',
+        transclude: true,
         scope: {
+            schema: '=',
             startval: '=',
-            jsonEditor: '=',
-            schemaUrl: '@',
-            editor: '=',
-            isValid: '='
+            editor: '='
         },
-        link: function (scope, element, attrs) {
-            var config = {
-                startval: scope.startval,
-                iconlib: attrs.iconlib || 'bootstrap3',
-                theme: attrs.theme || 'bootstrap3'
-            };
+        controller: JsonEditorConfig.controller,
+        link: function (scope, element, attrs, controller, transclude) {
+            var valueToResolve,
+                startValPromise = $q.when({}),
+                schemaPromise = $q.when(null);
 
-            if (scope.jsonEditor) {
-                config.schema = scope.jsonEditor;
+            scope.isValid = false;
 
-            } else if (attrs.schemaUrl) {
-                config.ajax = true;
-                config.schema = {
-                    $ref: scope.schemaUrl
-                };
+            if (!angular.isString(attrs.schema)) {
+                throw new Error('json-editor: schema attribute has to be defined.');
+            }
+            if (angular.isObject(scope.schema)) {
+                schemaPromise = $q.when(scope.schema);
+            }
+            if (angular.isObject(scope.startval)) {
+                // Support both $http (i.e. $q) and $resource promises, and also normal object.
+                valueToResolve = scope.startval;
+                if (angular.isDefined(valueToResolve.$promise)) {
+                    startValPromise = $q.when(valueToResolve.$promise);
 
-            } else {
-                console.error('no schema specified.');
+                } else {
+                    startValPromise = $q.when(valueToResolve);
+                }
             }
 
-            var editor = new JSONEditor(element[0], config);
+            // Wait for the start value and schema to resolve before building the editor.
+            $q.all([schemaPromise, startValPromise]).then(function (result) {
 
-            // Attach the editor object to the parent scope, for easy access from a controller.
-            if (attrs.editor) {
-                scope.editor = editor;
-            }
+                // Support $http promise response with the 'data' property.
+                var schema = result[0].data || result[0],
+                    startVal = result[1];
+                if (schema === null) {
+                    throw new Error('json-editor: could not resolve schema data.');
+                }
 
-            // scope.isValid holds the validation state of the entire form.
-            // it is useful for disabling the submit button while the form isn't valid.
-            if (attrs.isValid) {
-                scope.isValid = false;
+                angular.extend(JsonEditorConfig, {
+                    startval: startVal,
+                    schema: schema
+                });
+
+                scope.editor = new JSONEditor(element[0], JsonEditorConfig);
+
+                var editor = scope.editor;
+
                 editor.on('ready', function () {
                     scope.isValid = (editor.validate().length === 0);
-                    editor.on('change', function () {
-                        scope.$apply(function () {
-                            scope.isValid = (editor.validate().length === 0);
-                        });
+                });
+
+                editor.on('change', function () {
+                    scope.$apply(function () {
+                        scope.isValid = (editor.validate().length === 0);
                     });
                 });
-            }
+
+                // Transclude the buttons at the bottom.
+                var buttons = transclude(scope, function (clone) {
+                    return clone;
+                });
+
+                element.append(buttons);
+            });
         }
     };
-});
+
+}]);
