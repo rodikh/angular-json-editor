@@ -6,9 +6,6 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JsonEditorCo
     JsonEditorConfig.iconlib = 'bootstrap3';
     JsonEditorConfig.theme = 'bootstrap3';
 
-    // Configure the buttons controller
-    JsonEditorConfig.controller = 'ButtonsController';
-
 }).controller('SyncAppController', function ($scope) {
 
     $scope.mySchema = {
@@ -44,20 +41,26 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JsonEditorCo
             age: 20
         };
 
-    }, 2000);
+    }, 1500);
 
-}).controller('ButtonsController', function ($scope) {
+}).controller('SyncButtonsController', function ($scope) {
 
     /**
      * Custom actions controller which allows you to add any other buttons/actions to the form.
      */
 
     $scope.onSubmit = function () {
-        console.log('onSubmit Data', $scope.editor.getValue());
+        console.log('onSubmit data in sync controller', $scope.editor.getValue());
     };
 
     $scope.onAction2 = function () {
         console.log('onAction2');
+    };
+
+}).controller('AsyncButtonsController', function ($scope) {
+
+    $scope.onSubmit = function () {
+        console.log('onSubmit data in async controller', $scope.editor.getValue());
     };
 
 });
