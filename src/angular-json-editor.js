@@ -2,8 +2,7 @@
 
 angular.module('angular-json-editor', []).constant('JsonEditorConfig', {
     iconlib: 'bootstrap3',
-    theme: 'bootstrap3',
-    controller: angular.noop
+    theme: 'bootstrap3'
 
 }).directive('jsonEditor', ['$q', 'JsonEditorConfig', function ($q, JsonEditorConfig) {
 
@@ -13,9 +12,27 @@ angular.module('angular-json-editor', []).constant('JsonEditorConfig', {
         scope: {
             schema: '=',
             startval: '=',
-            editor: '='
+            buttonsController: '@'
         },
-        controller: JsonEditorConfig.controller,
+        controller: ['$scope', '$attrs', '$controller', function ($scope, $attrs, $controller) {
+
+            var controller, controllerScope, controllerName = $attrs.buttonsController;
+            if (angular.isString(controllerName) && controllerName !== '') {
+                controllerScope = {
+                    $scope: $scope
+                };
+
+                try {
+                    controller = $controller(controllerName, controllerScope);
+                } catch (e) {
+                    // Any exceptions thrown will probably be because the controller specified does not exist
+                    throw new Error('json-editor: buttons-controller attribute must be a valid controller.');
+                }
+            } else {
+                throw new Error('json-editor: buttons-controller attribute must be specified.');
+            }
+
+        }],
         link: function (scope, element, attrs, controller, transclude) {
             var valueToResolve,
                 startValPromise = $q.when({}),

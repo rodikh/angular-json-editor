@@ -12,7 +12,7 @@
 
 <h2>Synchronous values</h2>
 <div class="container" ng-controller="SyncAppController">
-    <json-editor schema="mySchema" startval="myStartVal" editor="myEditor">
+    <json-editor schema="mySchema" startval="myStartVal" buttons-controller="SyncButtonsController">
 
         <button type="submit" class="btn btn-success" ng-click="onSubmit($event)" ng-disabled="!isValid">
             <span class="glyphicon glyphicon-check"></span>
@@ -29,7 +29,7 @@
 
 <h2>Asynchronous values</h2>
 <div class="container" ng-controller="AsyncAppController">
-    <json-editor schema="mySchema" startval="myStartVal" editor="myEditor">
+    <json-editor schema="mySchema" startval="myStartVal" buttons-controller="AsyncButtonsController">
 
         <button type="submit" class="btn btn-success" ng-click="onSubmit($event)" ng-disabled="!isValid">
             <span class="glyphicon glyphicon-check"></span>
@@ -41,7 +41,8 @@
 
 <script src="../bower_components/json-editor/dist/jsoneditor.js"></script>
 <script src="../bower_components/angular/angular.js"></script>
-<script src="../src/angular-json-editor.js"></script>
+<!--<script src="../src/angular-json-editor.js"></script>-->
+<script src="../dist/angular-json-editor.min.js"></script>
 <script src="app.js"></script>
 
 </body>
