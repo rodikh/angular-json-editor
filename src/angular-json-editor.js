@@ -84,7 +84,7 @@ angular.module('angular-json-editor', []).constant('JsonEditorConfig', {
                 editor.on('change', function () {
                     // Fire the onChange callback
                     if (typeof scope.onChange === 'function') {
-                        scope.onChange();
+                        scope.onChange(editor.getValue());
                     }
                     scope.$apply(function () {
                         scope.isValid = (editor.validate().length === 0);
