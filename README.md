@@ -38,6 +38,12 @@ The directive exposes an `isValid` property on the scope, which can be used to e
 <button type="button" ng-disabled="!isValid">Button 1</button>
 ```
 
+### Events
+The directive allows you to pass a callback function through the `on-change` attribute that will be called whenever a change event is fired on the editor.
+```html
+    <json-editor schema="mySchema" startval="myStartVal" buttons-controller="SyncButtonsController" on-change="onChange()">
+```
+
 Building
 ---------
 
