@@ -20,7 +20,7 @@
         "node_modules"
     ],
     "dependencies": {
-        "json-editor": "~0.7.13",
+        "json-editor": "^0.7.13",
         "angular": "1.*"
     }
 }
