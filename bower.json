@@ -1,8 +1,8 @@
 {
     "name": "angular-json-editor",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "authors": [
-        "Rodik Hanukaev <rodikh@gmail.com>",
+        "Rodik Hanukaev <rodik@rodik.me>",
         "Topaz Bar <topaz1008@gmail.com>"
     ],
     "description": "angular.js directive for jdorn's json-editor",
@@ -20,7 +20,7 @@
         "node_modules"
     ],
     "dependencies": {
-        "json-editor": "~0.6.17",
-        "angular": "*"
+        "json-editor": "~0.7.13",
+        "angular": "1.*"
     }
 }
