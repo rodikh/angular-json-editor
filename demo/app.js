@@ -30,8 +30,9 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JsonEditorCo
         age: 20
     };
 
-    $scope.onChange = function () {
+    $scope.onChange = function (data) {
         console.log('Form changed!');
+        console.dir(data);
     };
 
 }).controller('AsyncAppController', function ($scope, $http, $timeout) {
