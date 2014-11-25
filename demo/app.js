@@ -1,10 +1,15 @@
 'use strict';
 
-angular.module('demoApp', ['angular-json-editor']).config(function (JsonEditorConfig) {
-
-    // angular-json-editor configuration
-    JsonEditorConfig.iconlib = 'bootstrap3';
-    JsonEditorConfig.theme = 'bootstrap3';
+angular.module('demoApp', ['angular-json-editor']).config(function (JSONEditorProvider) {
+    // these are set by default, but we set this for demonstration purposes
+    JSONEditorProvider.configure({
+        defaults: {
+            options: {
+                iconlib: 'bootstrap3',
+                theme: 'bootstrap3'
+            }
+        }
+    });
 
 }).controller('SyncAppController', function ($scope) {
 

@@ -1,23 +1,42 @@
 'use strict';
 
-angular.module('angular-json-editor', []).constant('JsonEditorConfig', {
-    iconlib: 'bootstrap3',
-    theme: 'bootstrap3'
-
-}).provider('JSONEditor', function () {
-    var configuration = {};
+angular.module('angular-json-editor', []).provider('JSONEditor', function () {
+    var configuration = {
+        defaults: {
+            options: {
+                iconlib: 'bootstrap3',
+                theme: 'bootstrap3'
+            }
+        }
+    };
 
     this.configure = function (options) {
-        angular.extend(configuration, options);
+        extendDeep(configuration, options);
     };
 
     this.$get = function ($window) {
         var JSONEditor = $window.JSONEditor;
-        angular.extend(JSONEditor, configuration);
+        extendDeep(JSONEditor, configuration);
         return $window.JSONEditor;
     };
 
-}).directive('jsonEditor', ['$q', 'JsonEditorConfig', 'JSONEditor', function ($q, JsonEditorConfig, JSONEditor) {
+    function extendDeep(dst) {
+        angular.forEach(arguments, function(obj) {
+            if (obj !== dst) {
+                angular.forEach(obj, function(value, key) {
+                    if (dst[key] && dst[key].constructor && dst[key].constructor === Object) {
+                        extendDeep(dst[key], value);
+                    } else {
+                        dst[key] = value;
+                    }
+                });
+            }
+        });
+        return dst;
+    }
+
+
+}).directive('jsonEditor', ['$q', 'JSONEditor', function ($q, JSONEditor) {
 
     return {
         restrict: 'E',
@@ -81,12 +100,10 @@ angular.module('angular-json-editor', []).constant('JsonEditorConfig', {
                     throw new Error('json-editor: could not resolve schema data.');
                 }
 
-                angular.extend(JsonEditorConfig, {
+                scope.editor = new JSONEditor(element[0], {
                     startval: startVal,
                     schema: schema
                 });
-
-                scope.editor = new JSONEditor(element[0], JsonEditorConfig);
 
                 var editor = scope.editor;
 
