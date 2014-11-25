@@ -4,7 +4,20 @@ angular.module('angular-json-editor', []).constant('JsonEditorConfig', {
     iconlib: 'bootstrap3',
     theme: 'bootstrap3'
 
-}).directive('jsonEditor', ['$q', 'JsonEditorConfig', function ($q, JsonEditorConfig) {
+}).provider('JSONEditor', function () {
+    var configuration = {};
+
+    this.configure = function (options) {
+        angular.extend(configuration, options);
+    };
+
+    this.$get = function ($window) {
+        var JSONEditor = $window.JSONEditor;
+        angular.extend(JSONEditor, configuration);
+        return $window.JSONEditor;
+    };
+
+}).directive('jsonEditor', ['$q', 'JsonEditorConfig', 'JSONEditor', function ($q, JsonEditorConfig, JSONEditor) {
 
     return {
         restrict: 'E',
