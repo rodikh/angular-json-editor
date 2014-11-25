@@ -44,6 +44,23 @@ The directive allows you to pass a callback function through the `on-change` att
     <json-editor schema="mySchema" startval="myStartVal" buttons-controller="SyncButtonsController" on-change="onChange()">
 ```
 
+### Configuration and Plugins
+Configuring the JSONEditor object for plugins and styling is possible by injecting the JSONEditorProvider to your config function and calling the configure method.
+The object you pass to configure will be merged with the JSONEditor object.
+
+```javascript
+    angular.module('demoApp', ['angular-json-editor']).config(function (JSONEditorProvider) {
+        JSONEditorProvider.configure({
+            plugins: {
+                sceditor: {
+                    style: 'sce/development/jquery.sceditor.default.css'
+                }
+            }
+        }); 
+    });
+
+```
+
 Building
 ---------
 
