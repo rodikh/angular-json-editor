@@ -55,6 +55,12 @@ The object you pass to configure will be merged with the JSONEditor object.
                 sceditor: {
                     style: 'sce/development/jquery.sceditor.default.css'
                 }
+            },
+            defaults: {
+                options: {
+                    iconlib: 'bootstrap3',
+                    theme: 'bootstrap3'
+                }
             }
         }); 
     });
