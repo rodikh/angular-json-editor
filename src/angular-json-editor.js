@@ -35,7 +35,6 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
         return dst;
     }
 
-
 }).directive('jsonEditor', ['$q', 'JSONEditor', function ($q, JSONEditor) {
 
     return {
@@ -61,8 +60,6 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                     // Any exceptions thrown will probably be because the controller specified does not exist
                     throw new Error('json-editor: buttons-controller attribute must be a valid controller.');
                 }
-            } else {
-                throw new Error('json-editor: buttons-controller attribute must be specified.');
             }
 
         }],

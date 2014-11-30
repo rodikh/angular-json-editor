@@ -13,7 +13,12 @@
 
 <h2>Synchronous values</h2>
 <div class="container" ng-controller="SyncAppController">
-    <json-editor schema="mySchema" startval="myStartVal" buttons-controller="SyncButtonsController" on-change="onChange($editorValue)">
+    <json-editor schema="mySchema" startval="myStartVal" on-change="onChange($editorValue)"></json-editor>
+</div>
+
+<h2>Buttons Controller</h2>
+<div class="container" ng-controller="SyncAppController">
+    <json-editor schema="mySchema" startval="myStartVal" buttons-controller="SyncButtonsController">
 
         <button type="submit" class="btn btn-success" ng-click="onSubmit($event)" ng-disabled="!isValid">
             <span class="glyphicon glyphicon-check"></span>
