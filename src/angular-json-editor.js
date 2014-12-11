@@ -14,11 +14,11 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
         extendDeep(configuration, options);
     };
 
-    this.$get = function ($window) {
+    this.$get = ['$window', function ($window) {
         var JSONEditor = $window.JSONEditor;
         extendDeep(JSONEditor, configuration);
         return $window.JSONEditor;
-    };
+    }];
 
     function extendDeep(dst) {
         angular.forEach(arguments, function (obj) {
