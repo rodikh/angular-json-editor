@@ -20,7 +20,7 @@ module.exports = function (grunt) {
                 }
             },
             files: [{
-                src: ['build/angular-json-editor-concat.js'],
+                src: ['dist/angular-json-editor.js'],
                 dest: 'dist/angular-json-editor.min.js'
             }]
         }

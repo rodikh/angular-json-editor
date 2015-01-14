@@ -18,7 +18,7 @@ module.exports = function (grunt) {
                 }
             },
             src: ['src/**/*.js'],
-            dest: 'build/angular-json-editor-concat.js',
+            dest: 'dist/angular-json-editor.js',
             nonull: true
         }
     });
