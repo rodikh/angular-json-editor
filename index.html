@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Angular-json-editor : An angular wrapper for jdorn/json-editor">
@@ -9,121 +9,174 @@
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
     <title>Angular-json-editor</title>
-  </head>
 
-  <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/rodikh/angular-json-editor">View on GitHub</a>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="src/angular-json-editor.js"></script>
+    <script src="javascripts/main.js"></script>
+</head>
 
-          <h1 id="project_title">Angular-json-editor</h1>
-          <h2 id="project_tagline">An angular wrapper for jdorn/json-editor</h2>
+<body ng-app="demoApp">
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/rodikh/angular-json-editor/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/rodikh/angular-json-editor/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+<!-- HEADER -->
+<div id="header_wrap" class="outer">
+    <header class="inner">
+        <a id="forkme_banner" href="https://github.com/rodikh/angular-json-editor">View on GitHub</a>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+        <h1 id="project_title">Angular-json-editor</h1>
+
+        <h2 id="project_tagline">An angular wrapper for jdorn/json-editor</h2>
+
+        <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/rodikh/angular-json-editor/zipball/master">Download
+                this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/rodikh/angular-json-editor/tarball/master">Download
+                this project as a tar.gz file</a>
+        </section>
+    </header>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
         <h1>
-<a id="json-editor-angular-directive" class="anchor" href="#json-editor-angular-directive" aria-hidden="true"><span class="octicon octicon-link"></span></a>JSON Editor Angular directive</h1>
+            <a id="json-editor-angular-directive" class="anchor" href="#json-editor-angular-directive"
+               aria-hidden="true"><span class="octicon octicon-link"></span></a>JSON Editor Angular directive</h1>
 
-<p>A directive that wraps <a href="https://github.com/jdorn/json-editor">jdorn's json-editor</a>.</p>
+        <p>A directive that wraps <a href="https://github.com/jdorn/json-editor">jdorn's json-editor</a>.</p>
 
-<p>JSON Editor takes a JSON Schema and uses it to generate an HTML form.</p>
+        <p>JSON Editor takes a JSON Schema and uses it to generate an HTML form.</p>
 
-<p>For further information about supported schema properties and usage, check out the original <a href="https://github.com/jdorn/json-editor">json-editor</a>.</p>
+        <p>For further information about supported schema properties and usage, check out the original <a
+                href="https://github.com/jdorn/json-editor">json-editor</a>.</p>
 
-<h2>
-<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+        <div class="demo">
+            <div class="container" ng-controller="SyncAppController">
+                <json-editor schema="mySchema" startval="myStartVal" on-change="onChange($editorValue)"></json-editor>
+            </div>
+        </div>
 
-<p>The module doesn't include the original json-editor code, but it is included in it's bower dependencies.</p>
+        <h2>
+            <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span
+                    class="octicon octicon-link"></span></a>Requirements</h2>
 
-<h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+        <p>The module doesn't include the original json-editor code, but it is included in it's bower dependencies.</p>
 
-<p>Install via bower</p>
+        <h2>
+            <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span
+                    class="octicon octicon-link"></span></a>Installation</h2>
+
+        <p>Install via bower</p>
 
 <pre><code>bower install angular-json-editor --save
 </code></pre>
 
-<p>Then include the directive and json-editor in your html (you can also use the minified versions)</p>
+        <p>Then include the directive and json-editor in your html (you can also use the minified versions)</p>
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>bower_components/json-editor/dist/jsoneditor.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
-&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>bower_components/angular-json-editor/angular-json-editor.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+        <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span
+                class="pl-s1"><span class="pl-pds">"</span>bower_components/json-editor/dist/jsoneditor.js<span
+                class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>bower_components/angular-json-editor/angular-json-editor.js<span
+                    class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre>
+        </div>
 
-<h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+        <h2>
+            <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage
+        </h2>
 
-<p>The directive supports both synchronous and asynchronous values, all values can be either a scope object, or a promise returned from $q, $http, $timeout, $resource etc.
-Please check out <code>demo/index.html</code> and <code>demo/app.js</code> for an example usage of both scenarios.</p>
+        <p>The directive supports both synchronous and asynchronous values, all values can be either a scope object, or
+            a promise returned from $q, $http, $timeout, $resource etc.
+            Please check out <code>demo/index.html</code> and <code>demo/app.js</code> for an example usage of both
+            scenarios.</p>
 
-<h3>
-<a id="validation" class="anchor" href="#validation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Validation</h3>
+        <h3>
+            <a id="validation" class="anchor" href="#validation" aria-hidden="true"><span
+                    class="octicon octicon-link"></span></a>Validation</h3>
 
-<p>The directive exposes an <code>isValid</code> property on the scope, which can be used to enable/disable show/hide buttons using <code>ng-disabled/ng-enabled</code> or <code>ng-hide/ng-show</code>.</p>
+        <p>The directive exposes an <code>isValid</code> property on the scope, which can be used to enable/disable
+            show/hide buttons using <code>ng-disabled/ng-enabled</code> or <code>ng-hide/ng-show</code>.</p>
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">button</span> <span class="pl-e">type</span>=<span class="pl-s1"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span class="pl-e">ng-disabled</span>=<span class="pl-s1"><span class="pl-pds">"</span>!isValid<span class="pl-pds">"</span></span>&gt;Button 1&lt;/<span class="pl-ent">button</span>&gt;</pre></div>
+        <div class="highlight highlight-html">
+            <pre>&lt;<span class="pl-ent">button</span> <span class="pl-e">type</span>=<span class="pl-s1"><span
+                    class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span
+                    class="pl-e">ng-disabled</span>=<span class="pl-s1"><span class="pl-pds">"</span>!isValid<span
+                    class="pl-pds">"</span></span>&gt;Button 1&lt;/<span class="pl-ent">button</span>&gt;</pre>
+        </div>
 
-<h3>
-<a id="events" class="anchor" href="#events" aria-hidden="true"><span class="octicon octicon-link"></span></a>Events</h3>
+        <h3>
+            <a id="events" class="anchor" href="#events" aria-hidden="true"><span
+                    class="octicon octicon-link"></span></a>Events</h3>
 
-<p>The directive allows you to pass a callback function through the <code>on-change</code> attribute that will be called whenever a change event is fired on the editor.</p>
+        <p>The directive allows you to pass a callback function through the <code>on-change</code> attribute that will
+            be called whenever a change event is fired on the editor.</p>
 
-<div class="highlight highlight-html"><pre>    &lt;<span class="pl-ent">json</span><span class="pl-e">-editor</span> <span class="pl-e">schema</span>=<span class="pl-s1"><span class="pl-pds">"</span>mySchema<span class="pl-pds">"</span></span> <span class="pl-e">startval</span>=<span class="pl-s1"><span class="pl-pds">"</span>myStartVal<span class="pl-pds">"</span></span> <span class="pl-e">buttons-controller</span>=<span class="pl-s1"><span class="pl-pds">"</span>SyncButtonsController<span class="pl-pds">"</span></span> <span class="pl-e">on-change</span>=<span class="pl-s1"><span class="pl-pds">"</span>onChange()<span class="pl-pds">"</span></span>&gt;</pre></div>
+        <div class="highlight highlight-html">
+            <pre>    &lt;<span class="pl-ent">json</span><span class="pl-e">-editor</span> <span
+                    class="pl-e">schema</span>=<span class="pl-s1"><span class="pl-pds">"</span>mySchema<span
+                    class="pl-pds">"</span></span> <span class="pl-e">startval</span>=<span class="pl-s1"><span
+                    class="pl-pds">"</span>myStartVal<span class="pl-pds">"</span></span> <span class="pl-e">buttons-controller</span>=<span
+                    class="pl-s1"><span class="pl-pds">"</span>SyncButtonsController<span class="pl-pds">"</span></span> <span
+                    class="pl-e">on-change</span>=<span class="pl-s1"><span class="pl-pds">"</span>onChange()<span
+                    class="pl-pds">"</span></span>&gt;</pre>
+        </div>
 
-<h3>
-<a id="configuration-and-plugins" class="anchor" href="#configuration-and-plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration and Plugins</h3>
+        <h3>
+            <a id="configuration-and-plugins" class="anchor" href="#configuration-and-plugins" aria-hidden="true"><span
+                    class="octicon octicon-link"></span></a>Configuration and Plugins</h3>
 
-<p>Configuring the JSONEditor object for plugins and styling is possible by injecting the JSONEditorProvider to your config function and calling the configure method.
-The object you pass to configure will be merged with the JSONEditor object.</p>
+        <p>Configuring the JSONEditor object for plugins and styling is possible by injecting the JSONEditorProvider to
+            your config function and calling the configure method.
+            The object you pass to configure will be merged with the JSONEditor object.</p>
 
-<div class="highlight highlight-javascript"><pre>    angular.module(<span class="pl-s1"><span class="pl-pds">'</span>demoApp<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span class="pl-pds">'</span>angular-json-editor<span class="pl-pds">'</span></span>]).config(<span class="pl-st">function</span> (<span class="pl-vpf">JSONEditorProvider</span>) {
+        <div class="highlight highlight-javascript"><pre>    angular.module(<span class="pl-s1"><span
+                class="pl-pds">'</span>demoApp<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span
+                class="pl-pds">'</span>angular-json-editor<span class="pl-pds">'</span></span>]).config(<span
+                class="pl-st">function</span> (<span class="pl-vpf">JSONEditorProvider</span>) {
         JSONEditorProvider.configure({
             plugins<span class="pl-k">:</span> {
                 sceditor<span class="pl-k">:</span> {
-                    style<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>sce/development/jquery.sceditor.default.css<span class="pl-pds">'</span></span>
+                    style<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>sce/development/jquery.sceditor.default.css<span
+                    class="pl-pds">'</span></span>
                 }
             },
             defaults<span class="pl-k">:</span> {
                 options<span class="pl-k">:</span> {
-                    iconlib<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>bootstrap3<span class="pl-pds">'</span></span>,
-                    theme<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>bootstrap3<span class="pl-pds">'</span></span>
+                    iconlib<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>bootstrap3<span
+                    class="pl-pds">'</span></span>,
+                    theme<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>bootstrap3<span
+                    class="pl-pds">'</span></span>
                 }
             }
         }); 
     });
-</pre></div>
+</pre>
+        </div>
 
-<h2>
-<a id="building" class="anchor" href="#building" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building</h2>
+        <h2>
+            <a id="building" class="anchor" href="#building" aria-hidden="true"><span
+                    class="octicon octicon-link"></span></a>Building</h2>
 
-<p>Clone the project, install bower and npm dependencies by running</p>
+        <p>Clone the project, install bower and npm dependencies by running</p>
 
 <pre><code>bower install &amp;&amp; npm install
 </code></pre>
 
-<p>If you dont have grunt-cli installed globally run <code>npm install -g grunt-cli</code></p>
+        <p>If you dont have grunt-cli installed globally run <code>npm install -g grunt-cli</code></p>
 
-<p>Then run <code>grunt</code> and look in the <code>dist</code> folder.</p>
-      </section>
-    </div>
+        <p>Then run <code>grunt</code> and look in the <code>dist</code> folder.</p>
+    </section>
+</div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
+<!-- FOOTER  -->
+<div id="footer_wrap" class="outer">
+    <footer class="inner">
         <p class="copyright">Angular-json-editor maintained by <a href="https://github.com/rodikh">rodikh</a></p>
+
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+    </footer>
+</div>
 
-    
 
-  </body>
+</body>
 </html>
