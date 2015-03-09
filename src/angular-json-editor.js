@@ -15,11 +15,13 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
     };
 
     this.$get = ['$window', function ($window) {
+        // configure JSONEditor using provider's configuration
         var JSONEditor = $window.JSONEditor;
         extendDeep(JSONEditor, configuration);
         return $window.JSONEditor;
     }];
 
+    // Helper method for merging configuration objects
     function extendDeep(dst) {
         angular.forEach(arguments, function (obj) {
             if (obj !== dst) {
@@ -47,21 +49,21 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
             onChange: '&'
         },
         controller: ['$scope', '$attrs', '$controller', function ($scope, $attrs, $controller) {
-
             var controller, controllerScope, controllerName = $attrs.buttonsController;
-            if (angular.isString(controllerName) && controllerName !== '') {
-                controllerScope = {
-                    $scope: $scope
-                };
-
-                try {
-                    controller = $controller(controllerName, controllerScope);
-                } catch (e) {
-                    // Any exceptions thrown will probably be because the controller specified does not exist
-                    throw new Error('json-editor: buttons-controller attribute must be a valid controller.');
-                }
+            if (!(angular.isString(controllerName) && controllerName !== '')) {
+                return;
             }
 
+            controllerScope = {
+                $scope: $scope
+            };
+
+            try {
+                controller = $controller(controllerName, controllerScope);
+            } catch (e) {
+                // Any exceptions thrown will probably be because the controller specified does not exist
+                throw new Error('angular-json-editor: buttons-controller attribute must be a valid controller.');
+            }
         }],
         link: function (scope, element, attrs, controller, transclude) {
             var valueToResolve,
@@ -71,7 +73,7 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
             scope.isValid = false;
 
             if (!angular.isString(attrs.schema)) {
-                throw new Error('json-editor: schema attribute has to be defined.');
+                throw new Error('angular-json-editor: schema attribute has to be defined.');
             }
             if (angular.isObject(scope.schema)) {
                 schemaPromise = $q.when(scope.schema);
@@ -94,7 +96,7 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                 var schema = result[0].data || result[0],
                     startVal = result[1];
                 if (schema === null) {
-                    throw new Error('json-editor: could not resolve schema data.');
+                    throw new Error('angular-json-editor: could not resolve schema data.');
                 }
 
                 scope.editor = new JSONEditor(element[0], {
@@ -115,6 +117,7 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                             $editorValue: editor.getValue()
                         });
                     }
+                    // reset isValid property onChange
                     scope.$apply(function () {
                         scope.isValid = (editor.validate().length === 0);
                     });
@@ -129,5 +132,4 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
             });
         }
     };
-
 }]);
