@@ -7,13 +7,15 @@
     <meta name="description" content="Angular-json-editor : An angular wrapper for jdorn/json-editor">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/style.css">
 
     <title>Angular-json-editor</title>
 
 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="bower_components/json-editor/dist/jsoneditor.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
-    <script src="src/angular-json-editor.js"></script>
+    <script src="dist/angular-json-editor.min.js"></script>
     <script src="javascripts/main.js"></script>
 </head>
 
@@ -51,11 +53,21 @@
         <p>For further information about supported schema properties and usage, check out the original <a
                 href="https://github.com/jdorn/json-editor">json-editor</a>.</p>
 
+        <h2>
+            <a id="example" class="anchor" href="#example" aria-hidden="true"><span
+                    class="octicon octicon-link"></span></a>Example</h2>
+
         <div class="demo">
-            <div class="container" ng-controller="SyncAppController">
+            <p>The following code is used to automatically generate the form below</p>
+            <pre>&lt;json-editor schema=&quot;mySchema&quot; startval=&quot;myStartVal&quot;
+                on-change=&quot;onChange($editorValue)&quot;&gt;&lt;/json-editor&gt;</pre>
+            <div ng-controller="SyncAppController">
                 <json-editor schema="mySchema" startval="myStartVal" on-change="onChange($editorValue)"></json-editor>
             </div>
+            <code class="console1">
+            </code>
         </div>
+
 
         <h2>
             <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span

@@ -6,7 +6,11 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JSONEditorPr
         defaults: {
             options: {
                 iconlib: 'bootstrap3',
-                theme: 'bootstrap3'
+                theme: 'bootstrap3',
+                disable_edit_json: true,
+                disable_properties: true,
+                disable_collapse: true,
+
             }
         }
     });
@@ -36,8 +40,7 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JSONEditorPr
     };
 
     $scope.onChange = function (data) {
-        console.log('Form changed!');
-        console.dir(data);
+        document.querySelector('.console1').innerHTML = "Form JSON: " + JSON.stringify(data);
     };
 
 });

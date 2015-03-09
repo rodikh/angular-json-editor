@@ -2,6 +2,7 @@
   "name": "angular-json-editor-page",
   "dependencies": {
     "json-editor": "^0.7.13",
-    "angular": "1.*"
+    "angular": "1.*",
+    "bootstrap": "3.1.*"
   }
 }
