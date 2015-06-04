@@ -59,7 +59,8 @@ The object you pass to configure will be merged with the JSONEditor object.
             defaults: {
                 options: {
                     iconlib: 'bootstrap3',
-                    theme: 'bootstrap3'
+                    theme: 'bootstrap3',
+                    ajax: true
                 }
             }
         }); 
