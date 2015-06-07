@@ -66,8 +66,7 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
             }
         }],
         link: function (scope, element, attrs, controller, transclude) {
-            var valueToResolve,
-                startValPromise = $q.when({}),
+            var startValPromise = $q.when({}),
                 schemaPromise = $q.when(null);
 
             scope.isValid = false;
@@ -80,13 +79,7 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
             }
             if (angular.isObject(scope.startval)) {
                 // Support both $http (i.e. $q) and $resource promises, and also normal object.
-                valueToResolve = scope.startval;
-                if (angular.isDefined(valueToResolve.$promise)) {
-                    startValPromise = $q.when(valueToResolve.$promise);
-
-                } else {
-                    startValPromise = $q.when(valueToResolve);
-                }
+                startValPromise = $q.when(scope.startval);
             }
 
             // Wait for the start value and schema to resolve before building the editor.
@@ -94,7 +87,7 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
 
                 // Support $http promise response with the 'data' property.
                 var schema = result[0].data || result[0],
-                    startVal = result[1];
+                    startVal = result[1].data || result[1];
                 if (schema === null) {
                     throw new Error('angular-json-editor: could not resolve schema data.');
                 }

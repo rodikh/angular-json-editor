@@ -20,6 +20,16 @@
             "type": "boolean",
             "title": "Is cool?",
             "required": true
+        },
+        "info": {
+            "type": "object",
+            "name": "Information",
+            "properties": {
+                "phone": {
+                    "type": "integer",
+                    "name": "phone"
+                }
+            }
         }
     }
 }
