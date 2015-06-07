@@ -1,0 +1,8 @@
+{
+  "name": "myname",
+  "age": 20,
+  "isCool": true,
+  "info": {
+    "phone": 1234
+  }
+}

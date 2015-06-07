@@ -46,12 +46,7 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JSONEditorPr
     $scope.mySchema = $http.get('schema.json');
 
     // Values can be a promise from anywhere
-    $scope.myStartVal = $timeout(function () {
-        return {
-            age: 20
-        };
-
-    }, 1500);
+    $scope.myStartVal = $http.get('startval.json');
 
 }).controller('SyncButtonsController', function ($scope) {
 
