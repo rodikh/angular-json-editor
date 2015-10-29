@@ -95,29 +95,54 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                     throw new Error('angular-json-editor: could not resolve schema data.');
                 }
 
-                scope.editor = new JSONEditor(element[0], {
-                    startval: startVal,
-                    schema: schema
-                });
+                function restart() {
+                    var values = startVal;
+                    if (scope.editor && scope.editor.destroy) {
+                        values = scope.editor.getValue();
+                        scope.editor.destroy();
+                    }
 
-                var editor = scope.editor;
+                    scope.editor = new JSONEditor(element[0], {
+                        startval: values,
+                        schema: schema
+                    }, true);
 
-                editor.on('ready', function () {
-                    scope.isValid = (editor.validate().length === 0);
-                });
+                    scope.editor.on('ready', editorReady);
+                    scope.editor.on('change', editorChange);
+                    element.append(buttons);
+                }
 
-                editor.on('change', function () {
+                function editorReady() {
+                    scope.isValid = (scope.editor.validate().length === 0);
+                }
+
+                function editorChange() {
                     // Fire the onChange callback
                     if (typeof scope.onChange === 'function') {
                         scope.onChange({
-                            $editorValue: editor.getValue()
+                            $editorValue: scope.editor.getValue()
                         });
                     }
                     // reset isValid property onChange
                     scope.$apply(function () {
-                        scope.isValid = (editor.validate().length === 0);
+                        scope.isValid = (scope.editor.validate().length === 0);
                     });
-                });
+                }
+
+                restart(startVal, schema);
+
+                scope.$watch('schema', function (newVal, oldVal) {
+                    //update newScheme
+                    if (newVal.success) {
+                        newVal.success(function (data) {
+                            schema = data;
+                        });
+                    } else {
+                        schema = newVal;
+                    }
+
+                    restart();
+                }, true);
 
                 // Transclude the buttons at the bottom.
                 var buttons = transclude(scope, function (clone) {

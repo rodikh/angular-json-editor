@@ -62,6 +62,14 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JSONEditorPr
         console.log('onAction2');
     };
 
+    $scope.changeSchema = function () {
+        $scope.schema.properties.height = {
+            required: true,
+            title: 'Height',
+            type: 'integer'
+        };
+    };
+
 }).controller('AsyncButtonsController', function ($scope) {
 
     $scope.onSubmit = function () {
