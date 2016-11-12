@@ -145,8 +145,11 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                 var buttons = transclude(scope, function (clone) {
                     return clone;
                 });
+				
+				transclude(scope, function (buttons) {
+                    element.append(buttons);
+                });
 
-                element.append(buttons);
             });
         }
     };
