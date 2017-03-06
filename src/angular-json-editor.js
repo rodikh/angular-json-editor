@@ -1,7 +1,4 @@
-(function (window, angular) {
 'use strict';
-// Source: src/angular-json-editor.js
-
 
 angular.module('angular-json-editor', []).provider('JSONEditor', function () {
     var configuration = {
@@ -161,5 +158,3 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
         }
     };
 }]);
-
-})(window, angular);

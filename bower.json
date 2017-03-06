@@ -1,8 +1,26 @@
 {
-  "name": "angular-json-editor-page",
-  "dependencies": {
-    "json-editor": "^0.7.18",
-    "angular": "1.*",
-    "bootstrap": "3.1.*"
-  }
+    "name": "angular-json-editor",
+    "version": "0.2.1",
+    "authors": [
+        "Rodik Hanukaev <rodik@rodik.me>",
+        "Topaz Bar <topaz1008@gmail.com>"
+    ],
+    "description": "angular.js directive for jdorn's json-editor",
+    "license": "MIT",
+    "main": "src/angular-json-editor.js",
+    "keywords": [
+        "angular",
+        "directive",
+        "json-editor",
+        "form",
+        "schema"
+    ],
+    "ignore": [
+        "bower_components",
+        "node_modules"
+    ],
+    "dependencies": {
+        "json-editor": "^0.7.28",
+        "angular": "1.*"
+    }
 }

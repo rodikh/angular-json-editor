@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "title": "Item Object Schema 2",
+  "required": true,
+  "additionalProperties": false,
+  "properties": {
+    "thingname": {
+      "type": "string",
+      "title": "Thing name",
+      "required": true,
+      "minLength": 1
+    },
+    "length": {
+      "type": "integer",
+      "title": "Length",
+      "required": true,
+      "min": 0
+    },
+    "isCool": {
+      "type": "boolean",
+      "title": "Is cool?",
+      "required": true
+    },
+    "info": {
+      "type": "object",
+      "name": "Information",
+      "properties": {
+        "phone": {
+          "type": "integer",
+          "name": "phone"
+        }
+      }
+    }
+  }
+}

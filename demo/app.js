@@ -40,18 +40,13 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JSONEditorPr
         console.dir(data);
     };
 
-}).controller('AsyncAppController', function ($scope, $http, $timeout) {
+}).controller('AsyncAppController', function ($scope, $http) {
 
     // Load with $http
     $scope.mySchema = $http.get('schema.json');
 
     // Values can be a promise from anywhere
-    $scope.myStartVal = $timeout(function () {
-        return {
-            age: 20
-        };
-
-    }, 1500);
+    $scope.myStartVal = $http.get('startval.json');
 
 }).controller('SyncButtonsController', function ($scope) {
 
@@ -67,10 +62,20 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JSONEditorPr
         console.log('onAction2');
     };
 
-}).controller('AsyncButtonsController', function ($scope) {
+    $scope.changeSchema = function () {
+        $scope.schema.properties.height = {
+            required: true,
+            title: 'Height',
+            type: 'integer'
+        };
+    };
 
+}).controller('AsyncButtonsController', function ($scope, $http) {
     $scope.onSubmit = function () {
         console.log('onSubmit data in async controller', $scope.editor.getValue());
     };
 
+    $scope.changeSchema = function () {
+        $scope.schema = $http.get('schema2.json');
+    };
 });

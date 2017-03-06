@@ -1,0 +1,18 @@
+{
+    "name": "angular-json-editor",
+    "version": "0.2.1",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/rodikh/angular-json-editor.git"
+    },
+    "main": "dist/angular-json-editor.js",
+    "devDependencies": {
+        "grunt": "1.0.*",
+        "grunt-contrib-jshint": "1.1.*",
+        "grunt-jscs": "3.0.*",
+        "grunt-contrib-uglify": "2.2.*",
+        "grunt-contrib-concat": "1.0.*",
+        "grunt-contrib-clean": "1.0.*",
+        "grunt-contrib-connect": "1.0.*"
+    }
+}
