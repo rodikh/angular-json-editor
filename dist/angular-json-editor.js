@@ -69,22 +69,14 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
             }
         }],
         link: function (scope, element, attrs, controller, transclude) {
-            var startValPromise = $q.when({}),
-                schemaPromise = $q.when(null);
+            var startValPromise = $q.when(scope.startval),
+                schemaPromise = $q.when(scope.schema);
 
             scope.isValid = false;
 
             if (!angular.isString(attrs.schema)) {
                 throw new Error('angular-json-editor: schema attribute has to be defined.');
             }
-            if (angular.isObject(scope.schema)) {
-                schemaPromise = $q.when(scope.schema);
-            }
-            if (angular.isObject(scope.startval)) {
-                // Support both $http (i.e. $q) and $resource promises, and also normal object.
-                startValPromise = $q.when(scope.startval);
-            }
-
             // Wait for the start value and schema to resolve before building the editor.
             $q.all([schemaPromise, startValPromise]).then(function (result) {
 
@@ -129,20 +121,35 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                     });
                 }
 
-                restart(startVal, schema);
+                restart();
 
-                scope.$watch('schema', function (newVal, oldVal) {
+                // update schema if changed
+                scope.$watch('schema', function (newVal) {
                     //update newScheme
-                    if (newVal.success) {
-                        newVal.success(function (data) {
+                    if (newVal.then) {
+                        newVal.then(function (data) {
                             schema = data;
+                            restart();
                         });
                     } else {
                         schema = newVal;
+                        restart();
                     }
-
-                    restart();
                 }, true);
+
+                // update schema if promise
+                scope.$watchCollection('schema', function (newVal) {
+                    if (newVal instanceof $q) {
+                        newVal.then(function (data) {
+                            if (data.data) {
+                                schema = data.data;
+                            }else {
+                                schema = data;
+                            }
+                            restart();
+                        });
+                    }
+                });
 
                 // Transclude the buttons at the bottom.
                 var buttons = transclude(scope, function (clone) {

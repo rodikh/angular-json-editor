@@ -20,10 +20,6 @@
     "disallowKeywordsOnNewLine": ["else"],
     "safeContextKeyword": ["self"],
     "requireLineFeedAtFileEnd": true,
-    "validateJSDoc": {
-        "checkParamNames": true,
-        "checkRedundantParams": true
-    },
     "disallowSpacesInNamedFunctionExpression": {
         "beforeOpeningRoundBrace": true
     },

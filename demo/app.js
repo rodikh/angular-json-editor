@@ -40,7 +40,7 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JSONEditorPr
         console.dir(data);
     };
 
-}).controller('AsyncAppController', function ($scope, $http, $timeout) {
+}).controller('AsyncAppController', function ($scope, $http) {
 
     // Load with $http
     $scope.mySchema = $http.get('schema.json');
@@ -70,10 +70,12 @@ angular.module('demoApp', ['angular-json-editor']).config(function (JSONEditorPr
         };
     };
 
-}).controller('AsyncButtonsController', function ($scope) {
-
+}).controller('AsyncButtonsController', function ($scope, $http) {
     $scope.onSubmit = function () {
         console.log('onSubmit data in async controller', $scope.editor.getValue());
     };
 
+    $scope.changeSchema = function () {
+        $scope.schema = $http.get('schema2.json');
+    };
 });
