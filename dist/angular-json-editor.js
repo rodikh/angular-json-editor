@@ -143,7 +143,7 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                         newVal.then(function (data) {
                             if (data.data) {
                                 schema = data.data;
-                            }else {
+                            } else {
                                 schema = data;
                             }
                             restart();
@@ -156,7 +156,9 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                     return clone;
                 });
 
-                element.append(buttons);
+                transclude(scope, function (buttons) {
+                    element.append(buttons);
+                });
             });
         }
     };

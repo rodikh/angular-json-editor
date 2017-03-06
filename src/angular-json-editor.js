@@ -140,7 +140,7 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                         newVal.then(function (data) {
                             if (data.data) {
                                 schema = data.data;
-                            }else {
+                            } else {
                                 schema = data;
                             }
                             restart();
@@ -152,8 +152,8 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                 var buttons = transclude(scope, function (clone) {
                     return clone;
                 });
-				
-		transclude(scope, function (buttons) {
+
+                transclude(scope, function (buttons) {
                     element.append(buttons);
                 });
             });
