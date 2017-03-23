@@ -14,5 +14,8 @@
         "grunt-contrib-concat": "1.0.*",
         "grunt-contrib-clean": "1.0.*",
         "grunt-contrib-connect": "1.0.*"
+    },
+    "dependencies": {
+        "json-editor": "^0.7.28"
     }
 }
