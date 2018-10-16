@@ -159,6 +159,13 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                 transclude(scope, function (buttons) {
                     element.append(buttons);
                 });
+
+		// resetting the data
+		  scope.$on('eventReset', function(event, data) {
+		    scope.editor.setValue(data);
+		  });
+
+
             });
         }
     };
