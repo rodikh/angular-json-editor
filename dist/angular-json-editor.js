@@ -70,7 +70,8 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
         }],
         link: function (scope, element, attrs, controller, transclude) {
             var startValPromise = $q.when(scope.startval),
-                schemaPromise = $q.when(scope.schema);
+                schemaPromise = $q.when(scope.schema),
+                isFormValid = true;
 
             scope.isValid = false;
 
@@ -109,10 +110,16 @@ angular.module('angular-json-editor', []).provider('JSONEditor', function () {
                 }
 
                 function editorChange() {
+                    if (scope.editor.validation_results.length > 0) {
+                      isFormValid = false;
+                    } else {
+                      isFormValid = true;
+                    }
                     // Fire the onChange callback
                     if (typeof scope.onChange === 'function') {
                         scope.onChange({
-                            $editorValue: scope.editor.getValue()
+                            $editorValue: scope.editor.getValue(),
+                            $isFormValid: isFormValid
                         });
                     }
                     // reset isValid property onChange
